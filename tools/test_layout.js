@@ -158,6 +158,7 @@ const OVERFLOW = `
   ];
   const SIZES = [
     [1920, 1080, 'desktop'],
+    [1440, 900, 'laptop'],   // диапазон пропорционального масштаба (zoom < 1)
     [768, 1024, 'tablet'],
     [360, 740, 'mobile']
   ];
