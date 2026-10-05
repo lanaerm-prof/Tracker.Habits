@@ -159,7 +159,9 @@ body {
   -webkit-font-smoothing: inherit;
 }
 
-body { min-height: 100vh; }
+/* 100vh / --z: единицы экрана не масштабируются от zoom (см. конец файла),
+   поэтому делим на коэффициент, иначе панель и фон короче экрана */
+body { min-height: calc(100vh / var(--z)); }
 h1, h2, h3, h4, p { margin: 0; }
 button, input, select, textarea { font: inherit; color: inherit; }
 a { color: inherit; text-decoration: none; }
@@ -290,7 +292,7 @@ button.chip--link:active { transform: scale(.95); }
 
 /* ---------- Вход / регистрация ---------- */
 .auth {
-  min-height: 100vh;
+  min-height: calc(100vh / var(--z));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -372,13 +374,13 @@ button.chip--link:active { transform: scale(.95); }
 .form-error:empty { min-height: 0; }
 
 /* ---------- Каркас приложения ---------- */
-.app { display: flex; min-height: 100vh; width: 100%; }
+.app { display: flex; min-height: calc(100vh / var(--z)); width: 100%; }
 
 .sidebar {
   width: var(--sidebar-w);
   flex: 0 0 var(--sidebar-w);
-  height: 100vh;
-  height: 100dvh;
+  height: calc(100vh / var(--z));
+  height: calc(100dvh / var(--z));
   position: sticky;
   top: 0;
   display: flex;
@@ -2186,4 +2188,32 @@ button.chip--link:active { transform: scale(.95); }
 
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
+}
+
+/* =========================================================
+   Пропорциональный масштаб десктопа
+
+   Спека макета (боковая панель 324px, заголовки до 56px,
+   карточки, поля) рассчитана на окно шириной 1920 CSS-пикселей.
+   Окно ноутбука при системном масштабе Windows 125% уже —
+   обычно 1280…1600 px, при этом все размеры остаются
+   потолочными (clamp доходит до максимума уже на 1200–1600),
+   и интерфейс выглядит гигантским.
+
+   Ниже 1920 уменьшаем всё пропорционально через `zoom`,
+   на 1920 и шире масштаб не меняется. Переменная --z идёт
+   в паре с zoom и нужна для правок вида 100vh / --z: единицы
+   экрана от zoom не масштабируются, поэтому их делим вручную.
+   ========================================================= */
+:root { --z: 1; }
+
+@supports (zoom: 1) {
+  @media (min-width: 1024px) and (max-width: 1919px) { :root { zoom: .66; --z: .66 } }
+  @media (min-width: 1280px) and (max-width: 1919px) { :root { zoom: .67; --z: .67 } }
+  @media (min-width: 1366px) and (max-width: 1919px) { :root { zoom: .71; --z: .71 } }
+  @media (min-width: 1440px) and (max-width: 1919px) { :root { zoom: .75; --z: .75 } }
+  @media (min-width: 1536px) and (max-width: 1919px) { :root { zoom: .8; --z: .8 } }
+  @media (min-width: 1600px) and (max-width: 1919px) { :root { zoom: .83; --z: .83 } }
+  @media (min-width: 1728px) and (max-width: 1919px) { :root { zoom: .9; --z: .9 } }
+  @media (min-width: 1800px) and (max-width: 1919px) { :root { zoom: .94; --z: .94 } }
 }
