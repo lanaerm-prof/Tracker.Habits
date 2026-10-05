@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#4E736D">
+<meta name="description" content="Ритм — персональный трекер привычек: прогресс, серия дней, категории, календарь и статистика.">
+<title>Ритм — трекер привычек</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg?v=2" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png?v=2">
+<link rel="preload" href="fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/manrope-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ===== Сплэш (состояние Loading) ===== -->
+<div id="splash" class="splash" aria-hidden="true">
+  <div class="splash-logo" data-logo></div>
+  <div class="spinner" aria-hidden="true"></div>
+</div>
+
+<!-- ===== Экран входа / регистрации ===== -->
+<div id="authScreen" class="auth">
+  <div class="auth-card card">
+    <div class="brand brand--auth">
+      <span class="brand-logo" data-logo></span>
+      <span class="brand-text">Ритм</span>
+    </div>
+    <p class="auth-sub">Серии дней, категории и статистика — в одном спокойном приложении.</p>
+
+    <div class="tabs" role="tablist" aria-label="Вход и регистрация">
+      <button type="button" class="tab is-active" data-auth-tab="login" role="tab" aria-selected="true">Вход</button>
+      <button type="button" class="tab" data-auth-tab="signup" role="tab" aria-selected="false">Регистрация</button>
+    </div>
+
+    <form id="loginForm" class="form" novalidate>
+      <label class="field">
+        <span>Логин / Email</span>
+        <input type="email" name="email" autocomplete="username" required placeholder="you@example.com">
+      </label>
+      <label class="field">
+        <span>Пароль</span>
+        <input type="password" name="password" autocomplete="current-password" required minlength="4" placeholder="Минимум 4 символа">
+      </label>
+      <p class="form-error" id="loginError" role="alert"></p>
+      <button class="btn btn-primary btn-block" type="submit">Войти</button>
+    </form>
+
+    <form id="signupForm" class="form hidden" novalidate>
+      <label class="field">
+        <span>Имя</span>
+        <input type="text" name="name" autocomplete="name" maxlength="40" placeholder="Как к вам обращаться?">
+      </label>
+      <label class="field">
+        <span>Логин / Email</span>
+        <input type="email" name="email" autocomplete="username" required placeholder="you@example.com">
+      </label>
+      <label class="field">
+        <span>Пароль</span>
+        <input type="password" name="password" autocomplete="new-password" required minlength="4" placeholder="Минимум 4 символа">
+      </label>
+      <p class="form-error" id="signupError" role="alert"></p>
+      <button class="btn btn-primary btn-block" type="submit">Создать аккаунт</button>
+    </form>
+
+    <p class="screen-copy screen-copy--auth">Правообладатель lanaerm_prof. Все права защищены. Использование без письменного разрешения запрещено.</p>
+  </div>
+</div>
+
+<!-- ===== Основное приложение ===== -->
+<div id="app" class="app hidden">
+  <aside class="sidebar" id="sidebar" aria-label="Навигация">
+    <div class="brand">
+      <span class="brand-logo" data-logo></span>
+      <span class="brand-text">Ритм</span>
+    </div>
+
+    <nav class="nav" id="nav">
+      <a class="nav-link" href="#/today" data-route="today"><span data-icon="bolt"></span><span>Сегодня</span></a>
+      <a class="nav-link" href="#/habits" data-route="habits"><span data-icon="checklist"></span><span>Привычки</span></a>
+      <a class="nav-link" href="#/categories" data-route="categories"><span data-icon="tag"></span><span>Категории</span></a>
+      <a class="nav-link" href="#/calendar" data-route="calendar"><span data-icon="calendar_month"></span><span>Календарь</span></a>
+      <a class="nav-link" href="#/stats" data-route="stats"><span data-icon="bar_chart"></span><span>Статистика</span></a>
+      <a class="nav-link" href="#/settings" data-route="settings"><span data-icon="settings"></span><span>Настройки</span></a>
+    </nav>
+
+    <div class="sidebar-foot">
+      <div class="user-chip" id="userChip">
+        <span class="avatar" id="userAvatar">?</span>
+        <span class="user-meta">
+          <span class="user-name" id="userName">—</span>
+          <span class="user-mail" id="userMail">—</span>
+        </span>
+      </div>
+      <button class="btn btn-ghost btn-block btn-sm" id="logoutBtn" type="button"><span data-icon="logout"></span>Выйти</button>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay" id="sidebarOverlay" hidden></div>
+
+  <div class="main-wrap">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <button class="icon-btn burger" id="burgerBtn" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="sidebar">
+          <span data-icon="menu"></span>
+        </button>
+        <h2 class="topbar-title" id="pageTitle">Сегодня</h2>
+        <button class="btn btn-primary topbar-add" id="topAddBtn" type="button"><span data-icon="add"></span>Привычка</button>
+      </div>
+    </header>
+
+    <main class="view" id="view" tabindex="-1"></main>
+
+    <!-- подпись правообладателя: остаётся на месте при любых перерисовках экрана -->
+    <p class="screen-copy">Правообладатель lanaerm_prof. Все права защищены. Использование без письменного разрешения запрещено.</p>
+  </div>
+</div>
+
+<div id="modalRoot"></div>
+<div class="toast-root" id="toastRoot" aria-live="polite"></div>
+
+<script src="js/icons.js"></script>
+<script src="js/store.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/views.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
