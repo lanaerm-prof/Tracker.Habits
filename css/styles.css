@@ -159,17 +159,15 @@ body {
   -webkit-font-smoothing: inherit;
 }
 
-/* 100vh / --z: единицы экрана не масштабируются от zoom (см. конец файла),
-   поэтому делим на коэффициент, иначе панель и фон короче экрана */
-body { min-height: calc(100vh / var(--z)); }
+body { min-height: 100vh; }
 h1, h2, h3, h4, p { margin: 0; }
 button, input, select, textarea { font: inherit; color: inherit; }
 a { color: inherit; text-decoration: none; }
 .hidden { display: none !important; }
 
 /* ---------- Общие элементы ---------- */
-h1 { font-size: clamp(28px, 3.6vw, 38px); font-weight: 800; line-height: 1.15; letter-spacing: -.02em; }
-h2 { font-size: 26px; font-weight: 800; line-height: 1.25; }
+h1 { font-size: clamp(24px, 1.67vw, 32px); font-weight: 800; line-height: 1.15; letter-spacing: -.02em; }
+h2 { font-size: 23px; font-weight: 800; line-height: 1.25; }
 
 .card {
   background: var(--surface);
@@ -292,7 +290,7 @@ button.chip--link:active { transform: scale(.95); }
 
 /* ---------- Вход / регистрация ---------- */
 .auth {
-  min-height: calc(100vh / var(--z));
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -306,10 +304,10 @@ button.chip--link:active { transform: scale(.95); }
   max-width: 420px;
   padding: 28px 26px 26px;
 }
-.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 16px; }
 .brand-logo { display: inline-flex; flex: 0 0 auto; }
 .brand-logo svg { width: 30px; height: 30px; display: block; }
-.brand--auth { justify-content: center; font-size: 24px; letter-spacing: -.01em; }
+.brand--auth { justify-content: center; font-size: 21px; letter-spacing: -.01em; }
 .brand--auth .brand-logo svg { width: 40px; height: 40px; }
 .auth-sub { margin: 12px 0 18px; text-align: center; color: var(--muted); font-size: 14px; }
 
@@ -374,13 +372,13 @@ button.chip--link:active { transform: scale(.95); }
 .form-error:empty { min-height: 0; }
 
 /* ---------- Каркас приложения ---------- */
-.app { display: flex; min-height: calc(100vh / var(--z)); width: 100%; }
+.app { display: flex; min-height: 100vh; width: 100%; }
 
 .sidebar {
   width: var(--sidebar-w);
   flex: 0 0 var(--sidebar-w);
-  height: calc(100vh / var(--z));
-  height: calc(100dvh / var(--z));
+  height: 100vh;
+  height: 100dvh;
   position: sticky;
   top: 0;
   display: flex;
@@ -505,7 +503,7 @@ button.chip--link:active { transform: scale(.95); }
    ========================================================= */
 @media (min-width: 1024px) {
   :root {
-    --sidebar-w: 324px;
+    --sidebar-w: clamp(230px, 14.3vw, 275px);
     /* поля вида шире — там разворачиваются стрелки галерей, увеличенные вдвое;
        content-max компенсирует поля, чтобы ширина контента не изменилась */
     --view-pad: 100px;
@@ -517,16 +515,16 @@ button.chip--link:active { transform: scale(.95); }
   .topbar { display: none; }
   .page-head .page-add { display: inline-flex; }
 
-  .sidebar { padding: 24px 18px; gap: 20px; }
-  .nav { gap: 7px; }
-  .nav-link { font-size: 18px; padding: 14px 17px; gap: 15px; border-radius: 14px; }
-  .nav-link svg { width: 24px; height: 24px; }
-  .brand { font-size: 21px; gap: 12px; }
-  .brand-logo svg { width: 34px; height: 34px; }
+  .sidebar { padding: 20px 16px; gap: 16px; }
+  .nav { gap: 6px; }
+  .nav-link { font-size: 16px; padding: 12px 15px; gap: 13px; border-radius: 13px; }
+  .nav-link svg { width: 22px; height: 22px; }
+  .brand { font-size: 16px; gap: 11px; }
+  .brand-logo svg { width: 28px; height: 28px; }
 
-  .sidebar-foot { gap: 13px; }
+  .sidebar-foot { gap: 11px; }
   .user-chip { gap: 12px; }
-  .avatar { width: 46px; height: 46px; flex: 0 0 46px; font-size: 18px; }
+  .avatar { width: 40px; height: 40px; flex: 0 0 40px; font-size: 16px; }
   .user-name { font-size: 16px; }
   .user-mail { font-size: 13px; }
 
@@ -581,7 +579,7 @@ button.chip--link:active { transform: scale(.95); }
   justify-content: space-between;
   gap: 18px;
   flex-wrap: wrap;
-  margin-bottom: clamp(18px, 2vw, 28px);
+  margin-bottom: clamp(15px, 1.25vw, 24px);
 }
 /* левая колонка заголовка занимает всю ширину — кнопка уходит к правому краю */
 .page-head__main { flex: 1 1 auto; min-width: 0; }
@@ -591,7 +589,7 @@ button.chip--link:active { transform: scale(.95); }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: clamp(14px, 1.6vw, 24px);
+  gap: clamp(12px, 1.04vw, 20px);
   flex-wrap: wrap;
 }
 .page-add { display: none; flex: 0 0 auto; }
@@ -601,25 +599,25 @@ button.chip--link:active { transform: scale(.95); }
   display: inline-flex;
   align-items: center;
   gap: 2px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 800;
   letter-spacing: -.01em;
   color: var(--accent-ink);
 }
 .back-link a svg.ico { width: 30px; height: 30px; flex: 0 0 30px; }
 .back-link a:hover { color: var(--accent); text-decoration: none; }
-.page-head h1 { font-size: clamp(28px, 3.6vw, 38px); font-weight: 800; letter-spacing: -.02em; line-height: 1.15; }
+.page-head h1 { font-size: clamp(24px, 1.67vw, 32px); font-weight: 800; letter-spacing: -.02em; line-height: 1.15; }
 .page-head .head-note { color: var(--muted); font-size: 15px; margin-top: 6px; }
-.section-title { font-size: clamp(22px, 2.4vw, 26px); font-weight: 800; margin-bottom: 14px; letter-spacing: -.01em; }
-.card-title { font-size: 19px; font-weight: 700; margin-bottom: 14px; }
+.section-title { font-size: clamp(19px, 1.15vw, 22px); font-weight: 800; margin-bottom: 14px; letter-spacing: -.01em; }
+.card-title { font-size: 17px; font-weight: 700; margin-bottom: 14px; }
 
 /* ---------- Сегодня: слева круг и подписи, справа список привычек ---------- */
 /* заголовок экрана крупнее — на «Сегодня» это главное название блока */
-[data-screen="today"] .page-head h1 { font-size: clamp(34px, 4.6vw, 56px); }
+[data-screen="today"] .page-head h1 { font-size: clamp(29px, 2.5vw, 48px); }
 .today-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: clamp(18px, 2vw, 30px);
+  gap: clamp(15px, 1.35vw, 26px);
   align-items: start;
 }
 .today-col { min-width: 0; }
@@ -632,9 +630,9 @@ button.chip--link:active { transform: scale(.95); }
 @media (min-width: 1440px) {
   .today-layout {
     grid-template-columns: minmax(340px, 42%) minmax(0, 1fr);
-    gap: clamp(24px, 5vw, 100px);
+    gap: clamp(20px, 4.43vw, 85px);
   }
-  .today-col--hero .today-hero { margin-bottom: 6px; padding-bottom: clamp(10px, 1.4vw, 18px); }
+  .today-col--hero .today-hero { margin-bottom: 6px; padding-bottom: clamp(9px, 0.78vw, 15px); }
 }
 
 /* ---------- Сегодня: крупный круг прогресса, без рамки ---------- */
@@ -643,16 +641,16 @@ button.chip--link:active { transform: scale(.95); }
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: clamp(6px, 1.2vw, 16px) 0 clamp(18px, 2.2vw, 30px);
-  margin-bottom: clamp(16px, 1.8vw, 26px);
+  padding: clamp(6px, 0.73vw, 14px) 0 clamp(15px, 1.35vw, 26px);
+  margin-bottom: clamp(14px, 1.15vw, 22px);
 }
-.today-hero .eyebrow { font-size: 17px; margin-bottom: clamp(14px, 1.6vw, 22px); }
+.today-hero .eyebrow { font-size: 15px; margin-bottom: clamp(12px, 0.99vw, 19px); }
 
 .progress-ring {
   --p: 0;
   position: relative;
-  width: clamp(260px, 30vw, 430px);
-  height: clamp(260px, 30vw, 430px);
+  width: clamp(221px, 19.06vw, 366px);
+  height: clamp(221px, 19.06vw, 366px);
   flex: 0 0 auto;
   border-radius: 50%;
   display: grid;
@@ -694,7 +692,7 @@ button.chip--link:active { transform: scale(.95); }
 .progress-ring::after {
   content: "";
   position: absolute;
-  inset: clamp(18px, 2vw, 30px);
+  inset: clamp(15px, 1.35vw, 26px);
   border-radius: 50%;
   background: var(--bg);
 }
@@ -702,7 +700,7 @@ button.chip--link:active { transform: scale(.95); }
   position: relative;
   z-index: 2;
   font-weight: 800;
-  font-size: clamp(54px, 7vw, 96px);
+  font-size: clamp(46px, 4.27vw, 82px);
   letter-spacing: -.045em;
   line-height: 1;
 }
@@ -723,8 +721,8 @@ button.chip--link:active { transform: scale(.95); }
 }
 
 .hero-lead {
-  margin-top: clamp(14px, 1.6vw, 22px);
-  font-size: clamp(20px, 2.2vw, 26px);
+  margin-top: clamp(12px, 0.99vw, 19px);
+  font-size: clamp(17px, 1.15vw, 22px);
   font-weight: 800;
   letter-spacing: -.01em;
 }
@@ -736,7 +734,7 @@ button.chip--link:active { transform: scale(.95); }
   align-items: center;
   gap: 10px;
   max-width: 660px;
-  margin-top: clamp(26px, 3vw, 44px);
+  margin-top: clamp(22px, 1.93vw, 37px);
   padding: 0;
   background: none;
   border: 0;
@@ -745,15 +743,15 @@ button.chip--link:active { transform: scale(.95); }
 }
 .better-title {
   font-weight: 800;
-  font-size: clamp(24px, 2.8vw, 32px);
+  font-size: clamp(20px, 1.41vw, 27px);
   line-height: 1.2;
   letter-spacing: -.02em;
 }
-.better-text { color: var(--muted); font-size: clamp(17px, 1.7vw, 20px); line-height: 1.5; }
-.better-numbers { display: flex; gap: clamp(30px, 5vw, 64px); margin-top: clamp(8px, 1vw, 14px); }
+.better-text { color: var(--muted); font-size: clamp(14px, 0.89vw, 17px); line-height: 1.5; }
+.better-numbers { display: flex; gap: clamp(26px, 2.81vw, 54px); margin-top: clamp(7px, 0.63vw, 12px); }
 .better-numbers div { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-.better-numbers b { font-size: clamp(34px, 4vw, 48px); font-weight: 800; letter-spacing: -.03em; line-height: 1.1; }
-.better-numbers span { font-size: clamp(15px, 1.4vw, 17px); color: var(--muted); font-weight: 600; }
+.better-numbers b { font-size: clamp(29px, 2.14vw, 41px); font-weight: 800; letter-spacing: -.03em; line-height: 1.1; }
+.better-numbers span { font-size: clamp(13px, 0.73vw, 14px); color: var(--muted); font-weight: 600; }
 
 /* лёгкая шкала (используется в статистике) */
 .bar {
@@ -812,7 +810,7 @@ button.chip--link:active { transform: scale(.95); }
 .habit-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 7px; }
 .habit-name {
   font-weight: 800;
-  font-size: 19px;
+  font-size: 17px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -835,7 +833,7 @@ button.chip--link:active { transform: scale(.95); }
   display: grid;
   place-items: center;
   color: transparent;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 900;
   transition: all .2s ease;
   padding: 0;
@@ -859,17 +857,17 @@ button.chip--link:active { transform: scale(.95); }
   background: var(--surface);
   cursor: pointer;
   font-weight: 800;
-  font-size: 19px;
+  font-size: 17px;
   line-height: 1;
   transition: all .15s ease;
 }
 .stepper button:hover { background: var(--ok-bg); color: var(--ok-fg); border-color: var(--ok-bg); transform: scale(1.08); }
 .stepper button:active { transform: scale(.9); }
-.stepper b { font-size: 18px; min-width: 56px; text-align: center; font-weight: 800; }
+.stepper b { font-size: 16px; min-width: 56px; text-align: center; font-weight: 800; }
 
 /* счётчик «сегодня» в карточке привычки */
 .goal-count {
-  font-size: 19px;
+  font-size: 17px;
   font-weight: 800;
   letter-spacing: -.01em;
   white-space: nowrap;
@@ -983,7 +981,7 @@ button.chip--link:active { transform: scale(.95); }
 /* карточки привычек — лента, высота под экран, шрифты крупнее */
 .card-list {
   display: flex;
-  gap: clamp(14px, 1.6vw, 22px);
+  gap: clamp(12px, 0.99vw, 19px);
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
@@ -993,13 +991,13 @@ button.chip--link:active { transform: scale(.95); }
 }
 .card-list::-webkit-scrollbar { height: 0; display: none; }
 .card-list > .habit-card {
-  flex: 0 0 clamp(340px, 32vw, 540px);
+  flex: 0 0 clamp(289px, 23.91vw, 459px);
   scroll-snap-align: start;
   /* подстройка под высоту экрана: карточка занимает место, но не рвёт страницу */
   min-height: clamp(330px, calc(100vh - var(--topbar-h) - 300px), 620px);
 }
 .habit-card {
-  padding: clamp(20px, 1.8vw, 26px);
+  padding: clamp(17px, 1.15vw, 22px);
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -1011,7 +1009,7 @@ button.chip--link:active { transform: scale(.95); }
 .habit-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--teal) 60%, var(--border)); }
 .habit-card-head { display: flex; align-items: flex-start; gap: 15px; min-width: 0; }
 .habit-card-head .habit-main { flex: 1; }
-.habit-card-head .habit-name { font-size: 20px; font-weight: 800; }
+.habit-card-head .habit-name { font-size: 18px; font-weight: 800; }
 .habit-card-foot {
   display: flex;
   align-items: center;
@@ -1025,39 +1023,39 @@ button.chip--link:active { transform: scale(.95); }
 /* строка «сегодня» внутри карточки — без шкалы, только крупный счётчик */
 .habit-goal { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .habit-miss { margin-top: -4px; }
-.stat-mini { display: flex; gap: clamp(18px, 2vw, 30px); }
+.stat-mini { display: flex; gap: clamp(15px, 1.35vw, 26px); }
 .stat-mini div { display: flex; flex-direction: column; }
-.stat-mini b { font-size: 24px; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
+.stat-mini b { font-size: 21px; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
 .stat-mini span { font-size: 13px; color: var(--muted); font-weight: 700; }
 
 /* крупнее вдвое — только внутри карточек ленты, остальные экраны не трогаем */
-.card-list > .habit-card { padding: clamp(26px, 2.4vw, 40px); gap: clamp(18px, 2vw, 28px); }
-.card-list .habit-card-head { align-items: flex-start; gap: clamp(16px, 1.6vw, 24px); }
+.card-list > .habit-card { padding: clamp(22px, 1.77vw, 34px); gap: clamp(15px, 1.25vw, 24px); }
+.card-list .habit-card-head { align-items: flex-start; gap: clamp(14px, 1.04vw, 20px); }
 .card-list .habit-card-head > .chip { margin-left: auto; }
 .card-list .habit-icon {
-  width: clamp(58px, 5vw, 78px);
-  height: clamp(58px, 5vw, 78px);
-  flex-basis: clamp(58px, 5vw, 78px);
+  width: clamp(49px, 3.44vw, 66px);
+  height: clamp(49px, 3.44vw, 66px);
+  flex-basis: clamp(49px, 3.44vw, 66px);
   border-radius: 18px;
 }
-.card-list .habit-icon svg.ico { width: clamp(30px, 2.6vw, 40px); height: clamp(30px, 2.6vw, 40px); }
-.card-list .habit-name { font-size: clamp(25px, 2vw, 32px); line-height: 1.2; gap: 12px; }
-.card-list .habit-meta { font-size: clamp(18px, 1.4vw, 22px); gap: 12px 20px; }
-.card-list .habit-meta svg.ico { width: clamp(18px, 1.4vw, 22px); height: clamp(18px, 1.4vw, 22px); }
-.card-list .chip { font-size: clamp(15px, 1.1vw, 18px); padding: 9px 17px; }
-.card-list .habit-goal { font-size: clamp(18px, 1.4vw, 22px); gap: 16px; }
-.card-list .goal-count { font-size: clamp(32px, 3vw, 48px); }
-.card-list .goal-count .muted { font-size: clamp(18px, 1.4vw, 24px); }
-.card-list .habit-card-foot { padding-top: clamp(18px, 1.8vw, 28px); }
-.card-list .stat-mini { gap: clamp(26px, 3vw, 52px); }
-.card-list .stat-mini b { font-size: clamp(34px, 3.4vw, 56px); }
-.card-list .stat-mini span { font-size: clamp(16px, 1.3vw, 21px); }
-.card-list .icon-btn { width: clamp(44px, 3vw, 56px); height: clamp(44px, 3vw, 56px); }
+.card-list .habit-icon svg.ico { width: clamp(26px, 1.77vw, 34px); height: clamp(26px, 1.77vw, 34px); }
+.card-list .habit-name { font-size: clamp(21px, 1.41vw, 27px); line-height: 1.2; gap: 12px; }
+.card-list .habit-meta { font-size: clamp(15px, 0.99vw, 19px); gap: 12px 20px; }
+.card-list .habit-meta svg.ico { width: clamp(15px, 0.99vw, 19px); height: clamp(15px, 0.99vw, 19px); }
+.card-list .chip { font-size: clamp(13px, 0.78vw, 15px); padding: 9px 17px; }
+.card-list .habit-goal { font-size: clamp(15px, 0.99vw, 19px); gap: 16px; }
+.card-list .goal-count { font-size: clamp(27px, 2.14vw, 41px); }
+.card-list .goal-count .muted { font-size: clamp(15px, 1.04vw, 20px); }
+.card-list .habit-card-foot { padding-top: clamp(15px, 1.25vw, 24px); }
+.card-list .stat-mini { gap: clamp(22px, 2.29vw, 44px); }
+.card-list .stat-mini b { font-size: clamp(29px, 2.5vw, 48px); }
+.card-list .stat-mini span { font-size: clamp(14px, 0.94vw, 18px); }
+.card-list .icon-btn { width: clamp(37px, 2.5vw, 48px); height: clamp(37px, 2.5vw, 48px); }
 .card-list .icon-btn svg.ico { width: 25px; height: 25px; }
 
 /* ---------- Пустое состояние ---------- */
 .empty {
-  padding: clamp(36px, 5vw, 60px) 24px;
+  padding: clamp(31px, 2.66vw, 51px) 24px;
   text-align: center;
   color: var(--muted);
   background:
@@ -1081,7 +1079,7 @@ button.chip--link:active { transform: scale(.95); }
   animation: float 2.6s ease-in-out infinite;
 }
 .empty-emoji svg.ico { width: 32px; height: 32px; }
-.empty h3 { color: var(--text); font-size: 21px; font-weight: 700; }
+.empty h3 { color: var(--text); font-size: 18px; font-weight: 700; }
 @keyframes float { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-7px) } }
 
 /* ---------- Сплэш и загрузка (состояние Loading) ---------- */
@@ -1113,15 +1111,15 @@ button.chip--link:active { transform: scale(.95); }
 /* ---------- Форма привычки ---------- */
 /* рамка формы — на всю ширину контента, шапка внутри неё же:
    рамка начинается на уровне заголовка, а не ниже него */
-.form-card { padding: clamp(22px, 2.4vw, 34px); }
+.form-card { padding: clamp(19px, 1.51vw, 29px); }
 .form-card .page-head {
   align-items: flex-start;
-  margin-bottom: clamp(20px, 2vw, 30px);
-  padding-bottom: clamp(16px, 1.6vw, 22px);
+  margin-bottom: clamp(17px, 1.35vw, 26px);
+  padding-bottom: clamp(14px, 0.99vw, 19px);
   border-bottom: 1px solid var(--border);
 }
-.form-card .page-head h1 { font-size: clamp(26px, 3vw, 34px); }
-.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 1.8vw, 24px); }
+.form-card .page-head h1 { font-size: clamp(22px, 1.51vw, 29px); }
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(14px, 1.04vw, 20px); }
 .form-grid .span-2 { grid-column: 1 / -1; }
 
 /* ошибка показывается прямо под своим полем, а не под целью */
@@ -1149,7 +1147,7 @@ button.chip--link:active { transform: scale(.95); }
 /* группы значков идут колонками — форма короче, чем при сплошном списке */
 /* min() вместо чистых 280px: на телефоне колонка не шире контейнера,
    иначе группы значков вылезают за поля формы */
-.icon-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: clamp(14px, 1.6vw, 24px); align-items: start; }
+.icon-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: clamp(12px, 1.04vw, 20px); align-items: start; }
 .icon-group__title {
   display: block;
   font-size: 13px;
@@ -1273,7 +1271,7 @@ button.chip--link:active { transform: scale(.95); }
   border: 1px solid color-mix(in srgb, var(--teal) 45%, var(--border));
   text-align: center;
   font-weight: 800;
-  font-size: 18px;
+  font-size: 16px;
   color: var(--text);
   -moz-appearance: textfield;
 }
@@ -1346,7 +1344,7 @@ button.chip--link:active { transform: scale(.95); }
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  font-size: 24px;
+  font-size: 21px;
   background: var(--surface-2);
   border: 1px solid var(--border);
   color: var(--text);
@@ -1360,14 +1358,16 @@ button.chip--link:active { transform: scale(.95); }
   border: 1px solid color-mix(in srgb, var(--teal) 45%, var(--border));
   text-align: center;
   font-weight: 800;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 /* ---------- Календарь ---------- */
 .calendar-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(360px, .95fr);
-  gap: clamp(16px, 1.8vw, 24px);
+  /* панели дня отдано чуть больше: название + чип категории влезают
+     в одну строку и не превращают строку привычки в «стену» */
+  grid-template-columns: minmax(0, 1.35fr) minmax(360px, 1fr);
+  gap: clamp(14px, 1.04vw, 20px);
   align-items: start;
 }
 /* пока окно уже ~1280px, панель дня съедает колонку, и 7 колонок дней
@@ -1375,11 +1375,11 @@ button.chip--link:active { transform: scale(.95); }
 @media (max-width: 1279px) {
   .calendar-layout { grid-template-columns: minmax(0, 1fr); }
 }
-.calendar-card { padding: clamp(24px, 2.8vw, 40px); min-width: 0; }
+.calendar-card { padding: clamp(20px, 1.77vw, 34px); min-width: 0; }
 .cal-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 22px; flex-wrap: wrap; }
-.cal-title { font-weight: 800; font-size: clamp(26px, 3vw, 36px); letter-spacing: -.02em; }
+.cal-title { font-weight: 800; font-size: clamp(22px, 1.61vw, 31px); letter-spacing: -.02em; }
 .cal-nav { display: flex; gap: 9px; }
-.cal-week, .cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(8px, 1vw, 14px); }
+.cal-week, .cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(7px, 0.63vw, 12px); }
 .cal-week span {
   text-align: center;
   font-size: 15px;
@@ -1407,7 +1407,7 @@ button.chip--link:active { transform: scale(.95); }
 }
 .cal-day:hover { border-color: var(--teal); transform: translateY(-3px); box-shadow: 0 6px 16px rgba(var(--teal-a), .3); }
 .cal-day:active { transform: scale(.94); }
-.cal-day .d { font-size: clamp(17px, 1.8vw, 24px); font-weight: 800; line-height: 1; }
+.cal-day .d { font-size: clamp(14px, 1.04vw, 20px); font-weight: 800; line-height: 1; }
 .cal-day .c { font-size: 14px; color: var(--muted); font-weight: 700; }
 .cal-day.is-empty { border-color: transparent; background: transparent; cursor: default; }
 .cal-day.is-empty:hover { transform: none; box-shadow: none; }
@@ -1421,9 +1421,9 @@ button.chip--link:active { transform: scale(.95); }
 .cal-day.is-selected.is-full { background: var(--accent); }
 .cal-day.is-selected.is-full .d { color: #fff; }
 
-.day-panel { padding: clamp(24px, 2.8vw, 40px); min-width: 0; }
-.day-panel h3 { font-size: clamp(25px, 2.8vw, 34px); font-weight: 800; margin-bottom: 6px; letter-spacing: -.02em; }
-.day-panel .muted { font-size: 17px; }
+.day-panel { padding: clamp(20px, 1.77vw, 34px); min-width: 0; }
+.day-panel h3 { font-size: clamp(21px, 1.51vw, 29px); font-weight: 800; margin-bottom: 6px; letter-spacing: -.02em; }
+.day-panel .muted { font-size: 15px; }
 .day-habits { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
 /* панель дня: та же строка привычки, но компактная — здесь важен счётчик, а не подписи */
 .day-habits .habit-row { flex-wrap: wrap; gap: 12px; padding: 16px 18px; }
@@ -1433,14 +1433,14 @@ button.chip--link:active { transform: scale(.95); }
 .day-habits .habit-icon { width: 46px; height: 46px; flex: 0 0 46px; }
 .day-habits .habit-icon svg.ico { width: 22px; height: 22px; }
 .day-habits .habit-main { gap: 5px; }
-.day-habits .habit-name { font-size: 17px; gap: 8px; }
-.day-habits .habit-name .chip--link { font-size: 13px; padding: 5px 11px; }
+.day-habits .habit-name { font-size: 15px; gap: 6px; }
+.day-habits .habit-name .chip--link { font-size: 12px; padding: 3px 10px; }
 .day-habits .habit-meta { font-size: 13px; gap: 5px 14px; }
 .day-habits .habit-meta svg.ico { width: 14px; height: 14px; }
 .day-habits .meta-streak { font-size: 15px; gap: 5px; }
 .day-habits .meta-streak.is-on { font-size: 16px; }
-.day-habits .stepper button { width: 36px; height: 36px; font-size: 18px; }
-.day-habits .stepper b { font-size: 17px; min-width: 52px; }
+.day-habits .stepper button { width: 36px; height: 36px; font-size: 16px; }
+.day-habits .stepper b { font-size: 15px; min-width: 52px; }
 .day-habit {
   display: flex;
   align-items: center;
@@ -1451,12 +1451,12 @@ button.chip--link:active { transform: scale(.95); }
   background: var(--surface-2);
   min-width: 0;
 }
-.day-habit .habit-main { font-size: 17px; font-weight: 700; }
+.day-habit .habit-main { font-size: 15px; font-weight: 700; }
 
 /* ---------- Статистика ---------- */
-.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: clamp(14px, 1.6vw, 20px); margin-bottom: clamp(16px, 1.8vw, 24px); }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: clamp(12px, 0.89vw, 17px); margin-bottom: clamp(14px, 1.04vw, 20px); }
 .stat-card {
-  padding: clamp(22px, 2.2vw, 30px);
+  padding: clamp(19px, 1.35vw, 26px);
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -1468,7 +1468,7 @@ button.chip--link:active { transform: scale(.95); }
 }
 .stat-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--teal) 55%, var(--border)); }
 .stat-card .label { font-size: 15px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
-.stat-card .value { font-size: clamp(34px, 4vw, 52px); font-weight: 800; letter-spacing: -.03em; line-height: 1.08; overflow-wrap: anywhere; }
+.stat-card .value { font-size: clamp(29px, 2.29vw, 44px); font-weight: 800; letter-spacing: -.03em; line-height: 1.08; overflow-wrap: anywhere; }
 .stat-card .sub { font-size: 16px; color: var(--muted); line-height: 1.45; }
 .stat-card .stat-ico {
   display: grid;
@@ -1480,9 +1480,9 @@ button.chip--link:active { transform: scale(.95); }
   color: var(--rust-ink);
 }
 .stat-card .stat-ico svg.ico { width: 24px; height: 24px; }
-.stat-card .emoji { font-size: 22px; }
+.stat-card .emoji { font-size: 19px; }
 
-.chart-card { padding: clamp(22px, 2.4vw, 32px); margin-bottom: clamp(16px, 1.8vw, 24px); }
+.chart-card { padding: clamp(19px, 1.41vw, 27px); margin-bottom: clamp(14px, 1.04vw, 20px); }
 .card-head {
   display: flex;
   align-items: center;
@@ -1491,7 +1491,7 @@ button.chip--link:active { transform: scale(.95); }
   flex-wrap: wrap;
   margin-bottom: 6px;
 }
-.card-head .card-title { margin-bottom: 0; font-size: clamp(21px, 2.2vw, 25px); }
+.card-head .card-title { margin-bottom: 0; font-size: clamp(18px, 1.09vw, 21px); }
 .chart {
   display: flex;
   align-items: flex-end;
@@ -1697,7 +1697,7 @@ button.chip--link:active { transform: scale(.95); }
   animation: pop .18s ease;
 }
 @keyframes pop { from { transform: translateY(8px) scale(.98); opacity: 0 } to { transform: none; opacity: 1 } }
-.modal h3 { font-size: 21px; font-weight: 800; margin-bottom: 8px; }
+.modal h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
 .modal p { color: var(--muted); font-size: 16px; line-height: 1.5; }
 .modal-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 22px; flex-wrap: wrap; }
 
@@ -1785,9 +1785,9 @@ button.chip--link:active { transform: scale(.95); }
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 700;
-  margin: 6px 0 clamp(16px, 1.8vw, 24px);
+  margin: 6px 0 clamp(14px, 1.04vw, 20px);
   overflow: hidden;
   box-shadow: inset 3px 0 0 var(--accent);
   transition: transform .2s ease, box-shadow .2s ease;
@@ -1832,8 +1832,8 @@ button.chip--link:active { transform: scale(.95); }
 .status-note:hover { transform: translateY(-2px); box-shadow: inset 3px 0 0 var(--accent), var(--shadow); }
 
 /* текущая серия в строке привычки — крупно и по делу */
-.meta-streak { display: inline-flex; align-items: center; gap: 6px; font-size: 17px; font-weight: 700; }
-.meta-streak.is-on { font-size: 19px; font-weight: 800; color: var(--rust-ink); }
+.meta-streak { display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 700; }
+.meta-streak.is-on { font-size: 17px; font-weight: 800; color: var(--rust-ink); }
 .meta-streak.is-on svg.ico { color: var(--rust); }
 .meta-streak svg.ico { width: 20px; height: 20px; color: var(--muted-2); }
 .habit-meta svg.ico, .rank-item .habit-meta svg.ico { width: 16px; height: 16px; }
@@ -1881,10 +1881,10 @@ button.chip--link:active { transform: scale(.95); }
 
 /* карточки статистики: 3 в ряд и компактные значения */
 .stats-grid--3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-.stat-card .value--sm { font-size: clamp(20px, 2.2vw, 26px); font-weight: 800; line-height: 1.3; }
+.stat-card .value--sm { font-size: clamp(17px, 1.15vw, 22px); font-weight: 800; line-height: 1.3; }
 
 /* тепловая карта: шкала от бирюзового к ржавому, с подписями месяцев и дней */
-.heat-card { margin-bottom: clamp(16px, 1.8vw, 24px); }
+.heat-card { margin-bottom: clamp(14px, 1.04vw, 20px); }
 .heat-months {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -1969,7 +1969,7 @@ button.chip--link:active { transform: scale(.95); }
   align-items: center;
   gap: 13px;
   min-width: 0;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 800;
 }
 .cat-activity-ico {
@@ -2008,8 +2008,8 @@ button.chip--link:active { transform: scale(.95); }
   grid-auto-flow: column;
   /* при немногих карточках лента занимает всю ширину экрана,
      при многих — расширяется за пределы и листается стрелками */
-  grid-auto-columns: clamp(300px, 26vw, 450px);
-  gap: clamp(14px, 1.6vw, 22px);
+  grid-auto-columns: clamp(255px, 19.95vw, 383px);
+  gap: clamp(12px, 0.99vw, 19px);
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
@@ -2033,26 +2033,26 @@ button.chip--link:active { transform: scale(.95); }
 /* карточки категорий — те же цвета, что и карточки привычек,
    но по высоте ровно под содержимое: пустого места внутри не остаётся */
 .cat-list > .cat-item {
-  padding: clamp(22px, 1.9vw, 32px);
-  gap: clamp(16px, 1.6vw, 24px);
+  padding: clamp(19px, 1.41vw, 27px);
+  gap: clamp(14px, 1.04vw, 20px);
   min-height: 0;
   box-shadow: var(--shadow-sm);
 }
-.cat-list .cat-head { gap: clamp(14px, 1.4vw, 20px); align-items: flex-start; }
+.cat-list .cat-head { gap: clamp(12px, 0.89vw, 17px); align-items: flex-start; }
 .cat-list .cat-badge {
-  width: clamp(54px, 4.4vw, 66px);
-  height: clamp(54px, 4.4vw, 66px);
-  flex-basis: clamp(54px, 4.4vw, 66px);
+  width: clamp(46px, 2.92vw, 56px);
+  height: clamp(46px, 2.92vw, 56px);
+  flex-basis: clamp(46px, 2.92vw, 56px);
   border-radius: 18px;
 }
-.cat-list .cat-badge svg.ico { width: clamp(26px, 2.2vw, 34px); height: clamp(26px, 2.2vw, 34px); }
-.cat-list .cat-name { font-size: clamp(24px, 1.9vw, 30px); font-weight: 800; line-height: 1.2; gap: 12px; }
-.cat-list .chip { font-size: clamp(15px, 1.1vw, 18px); padding: 9px 17px; }
-.cat-list .chip b { font-size: clamp(20px, 1.7vw, 26px); }
-.cat-list .cat-count { font-size: clamp(18px, 1.5vw, 23px); }
-.cat-list .cat-count b { font-size: clamp(30px, 2.8vw, 44px); }
-.cat-list .cat-foot { padding-top: clamp(18px, 1.8vw, 28px); font-size: clamp(16px, 1.3vw, 20px); }
-.cat-list .cat-actions .icon-btn { width: clamp(44px, 3vw, 54px); height: clamp(44px, 3vw, 54px); }
+.cat-list .cat-badge svg.ico { width: clamp(22px, 1.51vw, 29px); height: clamp(22px, 1.51vw, 29px); }
+.cat-list .cat-name { font-size: clamp(20px, 1.35vw, 26px); font-weight: 800; line-height: 1.2; gap: 12px; }
+.cat-list .chip { font-size: clamp(13px, 0.78vw, 15px); padding: 9px 17px; }
+.cat-list .chip b { font-size: clamp(17px, 1.15vw, 22px); }
+.cat-list .cat-count { font-size: clamp(15px, 1.04vw, 20px); }
+.cat-list .cat-count b { font-size: clamp(26px, 1.93vw, 37px); }
+.cat-list .cat-foot { padding-top: clamp(15px, 1.25vw, 24px); font-size: clamp(14px, 0.89vw, 17px); }
+.cat-list .cat-actions .icon-btn { width: clamp(37px, 2.4vw, 46px); height: clamp(37px, 2.4vw, 46px); }
 .cat-list .cat-actions .icon-btn svg.ico { width: 25px; height: 25px; }
 .cat-item:hover {
   transform: translateY(-3px);
@@ -2072,7 +2072,7 @@ button.chip--link:active { transform: scale(.95); }
   color: var(--rust-ink);
 }
 .cat-badge svg.ico { width: 23px; height: 23px; }
-.cat-name { flex: 1; min-width: 0; font-weight: 800; font-size: 18px; overflow-wrap: anywhere; line-height: 1.25; }
+.cat-name { flex: 1; min-width: 0; font-weight: 800; font-size: 16px; overflow-wrap: anywhere; line-height: 1.25; }
 .cat-tags { display: flex; flex-wrap: wrap; gap: 7px; }
 .cat-foot {
   display: flex;
@@ -2084,7 +2084,7 @@ button.chip--link:active { transform: scale(.95); }
   border-top: 1px solid var(--border);
 }
 .cat-count { font-size: 15px; color: var(--muted); font-weight: 700; }
-.cat-count b { color: var(--text); font-size: 20px; }
+.cat-count b { color: var(--text); font-size: 18px; }
 .cat-actions { display: flex; gap: 8px; }
 .cat-actions .icon-btn { width: 42px; height: 42px; opacity: .85; }
 .cat-item:hover .cat-actions .icon-btn { opacity: 1; }
@@ -2191,29 +2191,19 @@ button.chip--link:active { transform: scale(.95); }
 }
 
 /* =========================================================
-   Пропорциональный масштаб десктопа
+   Адаптивный масштаб десктопа (без zoom)
 
-   Спека макета (боковая панель 324px, заголовки до 56px,
-   карточки, поля) рассчитана на окно шириной 1920 CSS-пикселей.
-   Окно ноутбука при системном масштабе Windows 125% уже —
-   обычно 1280…1600 px, при этом все размеры остаются
-   потолочными (clamp доходит до максимума уже на 1200–1600),
-   и интерфейс выглядит гигантским.
+   Раньше здесь была ступенчатая лесенка `zoom` по ширине окна. Она
+   спорила с зумом самого браузера: зум вкладки меняет ширину окна в
+   CSS-пикселях, а сайт в ответ уменьшал себя — отсюда «80% крупнее 90%»,
+   «110% крупнее 125%» и скачок на 1920. Компенсация гасила зум вкладки.
 
-   Ниже 1920 уменьшаем всё пропорционально через `zoom`,
-   на 1920 и шире масштаб не меняется. Переменная --z идёт
-   в паре с zoom и нужна для правок вида 100vh / --z: единицы
-   экрана от zoom не масштабируются, поэтому их делим вручную.
+   Теперь масштаб живёт в самих размерах: каждый clamp доводится до своего
+   максимума ровно на 1920px (коэффициент = максимум / 19.2), поэтому
+   на узком окне элементы плавно и монотонно уменьшаются, а зум браузера
+   работает как у обычного сайта — px-шрифты масштабируются, вёрстка
+   перестраивается, инверсий нет.
+
+   Спека «Правок 6» сохранена: на 1920×1080 карточки Настроек — 5×389×418
+   (правила .settings*, --view-pad и --content-max не менялись).
    ========================================================= */
-:root { --z: 1; }
-
-@supports (zoom: 1) {
-  @media (min-width: 1024px) and (max-width: 1919px) { :root { zoom: .66; --z: .66 } }
-  @media (min-width: 1280px) and (max-width: 1919px) { :root { zoom: .67; --z: .67 } }
-  @media (min-width: 1366px) and (max-width: 1919px) { :root { zoom: .71; --z: .71 } }
-  @media (min-width: 1440px) and (max-width: 1919px) { :root { zoom: .75; --z: .75 } }
-  @media (min-width: 1536px) and (max-width: 1919px) { :root { zoom: .8; --z: .8 } }
-  @media (min-width: 1600px) and (max-width: 1919px) { :root { zoom: .83; --z: .83 } }
-  @media (min-width: 1728px) and (max-width: 1919px) { :root { zoom: .9; --z: .9 } }
-  @media (min-width: 1800px) and (max-width: 1919px) { :root { zoom: .94; --z: .94 } }
-}
